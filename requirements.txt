@@ -1,0 +1,17 @@
+# LangChain & LangGraph Orchestration
+langchain
+langchain-core
+langgraph  
+
+# Free LLM Providers (Groq & Gemini)
+google-generativeai
+langchain-google-genai
+groq
+langchain-groq
+
+# Environment & Local Utilities
+python-dotenv
+sentence-transformers
+
+# UI 
+streamlit
