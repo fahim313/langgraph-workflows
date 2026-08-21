@@ -57,8 +57,6 @@ graph = StateGraph(BMIState)
 
 # Add calculate_bmi node to graph
 graph.add_node('calculate_bmi', calculate_bmi)
-
-# Add label_bmi node to graph
 graph.add_node('label_bmi', label_bmi)
 
 
@@ -73,7 +71,6 @@ graph.add_edge('label_bmi',END)
                    
 # STEP 5: Complie and excute 
 
-#complie 
 workflow = graph.compile()
 
 initail_sate={
