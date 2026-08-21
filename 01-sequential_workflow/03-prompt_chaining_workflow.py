@@ -20,14 +20,14 @@ class BlogState(TypedDict):
 # step 2: Create Node  
 # ---------------------
 # Node 1: Create Outline 
-def create_outline(state:BlogState)->BlogState:
-    
+def create_outline(state: BlogState):
     title = state['title']
-    
+
     prompt = f"""
 Generate a detailed outline for a blog on the topic: {title}
 
 Important formatting rules:
+
 - Use plain text only.
 - Do not use Markdown.
 - Do not use # symbols.
@@ -36,36 +36,36 @@ Important formatting rules:
 - Do not use tables.
 - Use simple numbered sections and bullet points only.
 """
-    
-    outline = model.invoke(prompt).content
-    
-    state['outline'] = outline 
-    
-    return state 
 
-# Node2: Create Blog 
-def create_blog(state:BlogState)->BlogState:
+    outline = model.invoke(prompt).content
+
+    return {'outline': outline}
+
+
+def create_blog(state: BlogState):
     title = state['title']
     outline = state['outline']
-    
-    prompt =f"""
-    Write a detailed blog on the title: {title}
+
+    prompt = f"""
+Write a detailed blog on the title: {title}
 
 Use the following outline:
+
 {outline}
 
 Important:
+
 - Write in plain text only.
 - Do not use Markdown formatting.
 - Do not use # headings.
 - Do not use **bold** or *italic*.
 - Do not use tables.
 - Do not use --- separators.
-    """
+"""
+
     content = model.invoke(prompt).content
-    
-    state['content']=content
-    return state 
+
+    return {'content': content}
 
 # Step3: create Graph 
 graph = StateGraph(BlogState) 

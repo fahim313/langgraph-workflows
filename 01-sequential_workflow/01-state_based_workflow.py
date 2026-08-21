@@ -23,11 +23,7 @@ def calculate_bmi(state:BMIState) ->BMIState:
     # Calculate BMI 
     bmi = weight/(height**2)
     
-    # store calculated BMI in State 
-    state['bmi'] = round(bmi,2)
-    
-    # return update state 
-    return state 
+    return {'bmi': round(bmi, 2)} 
 
 # Node 2: Label BMI category 
 def label_bmi(state:BMIState)->BMIState:
@@ -36,19 +32,16 @@ def label_bmi(state:BMIState)->BMIState:
     bmi = state['bmi']
     
     # determine bmi category 
-    if bmi<18.5:
-        state["category"] = "Underweight"
-    
-    elif bmi>=18.5 and bmi<25:
-        state["category"] = "Normal"
-    
-    elif bmi>=25 and bmi<30:
-        state["category"] = "Overweight"
-    
+    if bmi < 18.5:
+        category = "Underweight"
+    elif bmi < 25:
+        category = "Normal"
+    elif bmi < 30:
+        category = "Overweight"
     else:
-        state["category"] = "Obese" 
-    
-    return state
+        category = "Obese"
+
+    return {'category': category}
 
 # STEP 3: Create Graph and Add Nodes
 
@@ -57,6 +50,8 @@ graph = StateGraph(BMIState)
 
 # Add calculate_bmi node to graph
 graph.add_node('calculate_bmi', calculate_bmi)
+
+# Add label_bmi node to graph
 graph.add_node('label_bmi', label_bmi)
 
 
@@ -71,6 +66,7 @@ graph.add_edge('label_bmi',END)
                    
 # STEP 5: Complie and excute 
 
+#complie 
 workflow = graph.compile()
 
 initail_sate={
@@ -90,4 +86,3 @@ print(final_state)
 # # Save the graph image
 # with open("bmi_workflow.png", "wb") as f:
 #     f.write(graph_image)
-
