@@ -3,11 +3,15 @@ langchain
 langchain-core
 langgraph  
 
-# Free LLM Providers (Groq & Gemini)
+# Free LLM Providers (Groq, Gemini & Hugging Face)
 google-generativeai
 langchain-google-genai
 groq
 langchain-groq
+torch
+transformers
+huggingface-hub
+langchain-huggingface
 
 # Environment & Local Utilities
 python-dotenv
